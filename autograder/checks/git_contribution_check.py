@@ -1,5 +1,5 @@
 from base_check import BaseCheck
-from git_contribution_analyzer import GitContributionAnalyzer
+from analysis.git_contribution_analyzer import GitContributionAnalyzer
 
 class GitContributionCheck(BaseCheck):
     def __init__(self, context):
@@ -13,7 +13,9 @@ class GitContributionCheck(BaseCheck):
             for name in not_committed:
                 self.error("Did not find any commits by '" + name + "'. Everyone must code!")
         else:
-            self.info("All team members performed GIT commits. OK")
+            contributor_count = len(self.analyzer.contributors)
+            self.info("Found GIT commits by {} team members. OK".format(
+                contributor_count))
 
         if self.analyzer.is_fair():
             self.info("Checked for Git contribution fairness. Seems OK")

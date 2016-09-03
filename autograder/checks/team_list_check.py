@@ -1,6 +1,6 @@
 import autograder
 from base_check import BaseCheck
-from team_parser import TeamParser
+from analysis.team_parser import TeamParser
 import os
 
 class TeamListCheck(BaseCheck):
@@ -11,6 +11,7 @@ class TeamListCheck(BaseCheck):
         team_file = os.path.join(self.context.repo_dir, 'team.txt')
         if not os.path.isfile(team_file):
             self.error("Required file 'team.txt' with names of team members not found")
+            return
 
         team_parser = TeamParser(team_file)
         team_parser.parse()
