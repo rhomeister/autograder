@@ -1,3 +1,4 @@
+import autograder
 from base_check import BaseCheck
 from team_parser import TeamParser
 import os

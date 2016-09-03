@@ -3,11 +3,8 @@ import autograder
 import git, os, shutil, sys, argparse
 import tempfile
 import shutil
-from colorama import init, Fore
 
-from team_parser import TeamParser
-from git_contribution_analyzer import GitContributionAnalyzer
-
+from console_logger import ConsoleLogger
 from checks.team_list_check import TeamListCheck
 from checks.git_contribution_check import GitContributionCheck
 from checks.required_files_present_check import RequiredFilesPresentCheck
@@ -22,13 +19,13 @@ def main():
 
     args = parser.parse_args()
     url = args.url
-    init()
     Runner(url)
 
 class Runner:
     def __init__(self, repo_url):
         self.warning_count = self.error_count = 0
         self.repo_url = repo_url
+        self.logger = ConsoleLogger()
         self.repo_dir = self.git_clone()
         self.check()
         self.cleanup()
@@ -40,19 +37,17 @@ class Runner:
 
     def check(self):
         print "---- PERFORMING CHECKS ----"
+        context = Context(self.repo_dir, self.logger)
 
         CHECKS = [TeamListCheck,
                   RequiredFilesPresentCheck,
                   GitContributionCheck]
-
-        context = Context(self.repo_dir)
 
         for check_class in CHECKS:
             check = check_class(context)
             check.run()
             self.error_count += check.error_count
             self.warning_count += check.warning_count
-
 
     def git_clone(self):
         repo_dir = tempfile.mkdtemp()
@@ -69,12 +64,12 @@ class Runner:
 
     def print_output(self):
         print "---- DONE ----"
-        color = Fore.GREEN
-        color = color if self.warning_count == 0 else Fore.YELLOW
-        color = color if self.error_count == 0 else Fore.RED
+        log = self.logger.info
+        log = log if self.warning_count == 0 else self.logger.warn
+        log = log if self.error_count == 0 else self.logger.error
 
-        print "{}{} error(s) and {} warning(s) found".format(
-                color, self.error_count, self.warning_count)
+        log("{} error(s) and {} warning(s) found".format(
+                self.error_count, self.warning_count))
 
 if __name__ == "__main__":
     main()

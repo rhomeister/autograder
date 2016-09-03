@@ -1,5 +1,3 @@
-from colorama import Fore, Style
-
 class BaseCheck(object):
     def __init__(self, context):
         self.context = context
@@ -8,14 +6,11 @@ class BaseCheck(object):
 
     def error(self, message):
         self.error_count += 1
-        self.print_message('     ERROR: ' + message, Fore.RED)
+        self.context.logger.error(message)
 
     def warn(self, message):
         self.warning_count += 1
-        self.print_message('     WARN: ' + message, Fore.YELLOW)
+        self.context.logger.warn(message)
 
     def info(self, message):
-        self.print_message('     INFO: ' +  message, Fore.GREEN)
-
-    def print_message(self, message, color):
-        print color + message + Style.RESET_ALL
+        self.context.logger.info(message)
