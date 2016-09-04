@@ -18,6 +18,9 @@ class GitContributionAnalyzer:
 
         root = ET.fromstring(out)
 
+        if root.find('changes').find('authors') is None:
+            return
+
         for author in root.find('changes').find('authors').iter('author'):
             self.contributors.append(Contribution(author))
 

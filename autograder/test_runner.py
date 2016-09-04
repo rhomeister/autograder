@@ -18,6 +18,11 @@ class TestRunner(object):
                     self.context.testcasedir + "' exist?")
             return
 
+        file = self.context.runscript
+        if not os.path.isfile(file):
+            self.error("Could not find file '{}' to run the program.".format(file))
+            return
+
         for problem_file in problem_files:
             self.test_count += 1
             output = self.get_output(problem_file)
@@ -39,12 +44,12 @@ class TestRunner(object):
             return True
         else:
             self.error("Testing '" + problem_file + "'. Result: output DIFFERENT")
-            self.error("Expected:")
+            self.error("    Expected:")
             for line in expected_output.split('\n'):
-                self.error(line)
-            self.error("Actual:")
+                self.error("    " + line)
+            self.error("    Actual:")
             for line in output.split('\n'):
-                self.error(line)
+                self.error("    " + line)
             return False
 
     def info(self, message):
@@ -77,7 +82,7 @@ class TestRunner(object):
                     for line in err.split('\n'):
                         self.warn(line)
         except Exception as e:
-            self.error('Caught unexpected error ' + e)
+            self.error('Caught unexpected error ' + str(e))
 
         return out
 

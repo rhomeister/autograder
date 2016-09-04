@@ -9,11 +9,15 @@ class GitContributionCheck(BaseCheck):
         self.analyzer = GitContributionAnalyzer(self.context.repo_dir)
 
         not_committed = self.member_names_without_commits()
-        if len(not_committed) > 0:
+        contributor_count = len(self.analyzer.contributors)
+        if contributor_count == 0:
+            self.error("Did not find any commits with relevant files.")
+            return
+        elif len(not_committed) > 0:
             for name in not_committed:
                 self.error("Did not find any commits by '" + name + "'. Everyone must code!")
+            return
         else:
-            contributor_count = len(self.analyzer.contributors)
             self.info("Found GIT commits by {} team members. OK".format(
                 contributor_count))
 

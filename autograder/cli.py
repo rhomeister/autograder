@@ -97,6 +97,7 @@ class Runner:
 
         log = self.context.logger.info
         log = log if self.context.tests_failed == 0 else self.context.logger.error
+        log = log if self.context.tests_run > 0 else self.context.logger.warn
         log("program passed {}/{} test cases ({} failed)".format(
                 self.context.tests_passed,
                 self.context.tests_run,
