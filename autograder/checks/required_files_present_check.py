@@ -6,7 +6,7 @@ class RequiredFilesPresentCheck(BaseCheck):
         super(RequiredFilesPresentCheck, self).__init__(context)
 
     def run(self):
-        required_files = ['report.pdf']
+        required_files = ['report.pdf', self.context.runscript]
         for required_file in required_files:
             self.check_presence(required_file)
 

@@ -18,7 +18,7 @@ setup(name='autograder',
             ],
         entry_points = {
             'console_scripts': [
-                'autograde=autograder.cli:main'
+                'autograder=autograder.cli:main'
                 ],
             },
         zip_safe=False
