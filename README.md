@@ -100,3 +100,11 @@ For an example assignment, see this
 
 For an example submission based on the example assignment, see this
 [repository](https://github.com/rhomeister/autograder-example-submission).
+
+## Screenshot
+
+Result of executing: 
+`autograder https://github.com/rhomeister/autograder-example-submission` 
+
+![Example usage](screenshot.png)
+
