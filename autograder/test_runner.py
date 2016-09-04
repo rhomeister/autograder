@@ -10,6 +10,9 @@ class TestRunner(object):
         self.success_count = 0
 
     def run(self):
+        os.getcwd()
+        os.chdir(self.context.repo_dir)
+
         search = os.path.join(self.context.testcasedir, '*.in')
         problem_files = glob.glob(search)
 
@@ -68,7 +71,7 @@ class TestRunner(object):
             return file.read()
 
     def get_output(self, problem_file):
-        runscript = self.context.runscript
+        runscript = os.path.join(self.context.repo_dir, self.context.runscript)
         out = ''
         err = ''
         try:
@@ -82,7 +85,7 @@ class TestRunner(object):
                     for line in err.split('\n'):
                         self.warn(line)
         except Exception as e:
-            self.error('Caught unexpected error ' + str(e))
+            self.error('Caught unexpected error: ' + str(e))
 
         return out
 

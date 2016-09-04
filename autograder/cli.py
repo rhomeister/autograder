@@ -20,14 +20,14 @@ def main():
                                 help='the URL of the git repository',
                                 default=os.getcwd())
     parser.add_argument('--testcasedir', help='the directory with testcases',
-                                default=os.path.join(os.getcwd(), 'testcases'))
+                                default='testcases')
     parser.add_argument('--runscript', help='the script run the program',
                                 default='run')
 
     args = parser.parse_args()
     url = args.url
     testcasedir = args.testcasedir
-    runscript = os.path.join(os.getcwd(), args.runscript)
+    runscript = args.runscript
     Runner(url, testcasedir, runscript)
 
 class Runner:
