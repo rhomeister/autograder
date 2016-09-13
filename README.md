@@ -27,7 +27,17 @@ Note: these need to be written. Currently inviting help from users
 4. `unzip master.zip`
 5. `cd autograder`
 6. `brew install python`
-7. `sudo python setup.py install`
+7. `sudo chown -R $USER /Library/Python/`
+8. `sudo curl https://bootstrap.pypa.io/ez_setup.py -o - | python`
+9.  `nano ~/.bash_profile`
+10. _Paste at the end of the file_:
+
+   `export LC_ALL=en_US.UTF-8`
+
+   `export LANG=en_US.UTF-8`
+
+11. `source ~/.bash_profile`
+12. `sudo python setup.py install`
 
 
 # Using autograder
