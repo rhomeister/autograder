@@ -21,17 +21,13 @@ Note: these need to be written. Currently inviting help from users
 
 ## MacOS
 
-   Install Homebrew:
-
-1.    `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-2. `wget https://github.com/rhomeister/autograder/archive/master.zip`
-3. `unzip master.zip`
-4. `cd autograder`
-
-   Instal Python, brew installs setuptools by default:
-
-5.   `brew install python`
-6. `python setup.py install`
+1.  `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+2. `brew install wget`
+3. `wget https://github.com/rhomeister/autograder/archive/master.zip`
+4. `unzip master.zip`
+5. `cd autograder`
+6.  `brew install python`
+7. `python setup.py install`
 
 
 # Using autograder
