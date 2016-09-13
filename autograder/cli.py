@@ -77,7 +77,7 @@ class Runner:
         repo = git.Repo.init(repo_dir)
         origin = repo.create_remote('origin', self.repo_url)
         origin.fetch()
-        origin.pull(origin.refs[0].remote_head)
+        origin.pull('master')
         self.context.logger.info('Cloned git repo into ' + repo_dir)
         return repo_dir
 
