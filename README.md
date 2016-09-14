@@ -21,9 +21,9 @@ Note: these need to be written. Currently inviting help from users
 
 ## MacOS
 
-**Instal dependencies:**
+**Install dependencies:**
 
-If you don't have yet brew yet or wget, you install it with the following commands:
+If you don't have brew and wget, you install them with the following commands:
 
 1. `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
@@ -32,6 +32,9 @@ If you don't have yet brew yet or wget, you install it with the following comman
 If you don't have Python with Setuptools & Pip:
 
 `brew install python`
+
+_Note: MacOS has a python version installed by default, but it doesn't have
+Setuptools & Pip by default_
 
 **Install Autograder:**
 
@@ -42,7 +45,7 @@ If you don't have Python with Setuptools & Pip:
 
 **Troubleshooting**
 
-If you have any issues with a dependency, it can be solved with the
+If you have any issues during installation, most likely its an issue installing a dependency or you haven't set up the local info. Most of the time it can be solved with the
 next steps.
 
 1. Change the ownership from your Python Library
@@ -67,7 +70,7 @@ next steps.
 
     `source ~/.bash_profile`
 
-5. Retry installing Autograder
+5. Retry installing/running Autograder
 
 
 # Using autograder
