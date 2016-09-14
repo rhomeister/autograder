@@ -21,23 +21,53 @@ Note: these need to be written. Currently inviting help from users
 
 ## MacOS
 
+**Instal dependencies:**
+
+If you don't have yet brew yet or wget, you install it with the following commands:
+
 1. `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
 2. `brew install wget`
-3. `wget https://github.com/rhomeister/autograder/archive/master.zip`
-4. `unzip master.zip`
-5. `cd autograder`
-6. `brew install python`
-7. `sudo chown -R $USER /Library/Python/`
-8. `sudo curl https://bootstrap.pypa.io/ez_setup.py -o - | python`
-9.  `nano ~/.bash_profile`
-10. _Paste at the end of the file_:
+
+If you don't have Python with Setuptools & Pip:
+
+`brew install python`
+
+**Install Autograder:**
+
+1. `wget https://github.com/rhomeister/autograder/archive/master.zip`
+2. `unzip master.zip`
+3. `cd autograder`
+4. `sudo python setup.py install`
+
+**Troubleshooting**
+
+If you have any issues with a dependency, it can be solved with the
+next steps.
+
+1. Change the ownership from your Python Library
+
+   `sudo chown -R $USER /Library/Python/`
+
+2. Install ez_setup
+
+   `sudo curl https://bootstrap.pypa.io/ez_setup.py -o - | python`
+
+3. Add the required exports to your bash or zsh profile:
+
+   `nano ~/.bash_profile`
+
+    _Paste at the end of the file_:
 
    `export LC_ALL=en_US.UTF-8`
 
    `export LANG=en_US.UTF-8`
 
-11. `source ~/.bash_profile`
-12. `sudo python setup.py install`
+4. Reload your bash profile
+
+    `source ~/.bash_profile`
+
+5. Retry installing Autograder
 
 
 # Using autograder
