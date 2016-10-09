@@ -13,7 +13,6 @@ setup(name='autograder',
         install_requires=[
             'gitpython',
             'gitinspector',
-            'numpy',
             'colorama'
             ],
         entry_points = {

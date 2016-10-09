@@ -1,6 +1,5 @@
 import subprocess
 import xml.etree.ElementTree as ET
-import numpy
 
 # Class for analyzing the contributions of each collaborator of a git
 # repository. This uses gitinspector to do the actual work
@@ -47,16 +46,16 @@ class FairnessMetric:
 
     @staticmethod
     def fairness_metric(fractions):
-        count = len(fractions)
-        std = numpy.std(fractions)
-        denom = (count - 1) ** 0.5
-        stderr = std / denom
+        return 1.0
+        # count = len(fractions)
+        # std = numpy.std(fractions)
+        # denom = (count - 1) ** 0.5
+        # stderr = std / denom
 
-        mean = numpy.mean(fractions)
-        worst_std = (((1 - mean) ** 2 + mean ** 2 * (count - 1)) / count) ** 0.5
-        worst_stderr = worst_std / denom
-
-        return (1 - stderr / worst_stderr) ** 2
+        # mean = numpy.mean(fractions)
+        # worst_std = (((1 - mean) ** 2 + mean ** 2 * (count - 1)) / count) ** 0.5
+        # worst_stderr = worst_std / denom
+        # return (1 - stderr / worst_stderr) ** 2
 
 
 class Contribution:
