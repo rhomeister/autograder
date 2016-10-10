@@ -36,9 +36,11 @@ class TestRunner(object):
                 self.error_count += 1
 
     def compare(self, problem_file, output, expected_output):
+        expected_output = self.strip_whitespace(expected_output)
         diff_iterator = context_diff(output, expected_output,
             fromfile='program output', tofile='expected')
         diff = ""
+
         for char in diff_iterator:
             diff += char
 
@@ -87,5 +89,9 @@ class TestRunner(object):
         except Exception as e:
             self.error('Caught unexpected error: ' + str(e))
 
-        return out
+        return self.strip_whitespace(out)
 
+    def strip_whitespace(self, string):
+        # remove trailing whitespace
+        return "\n".join([line.rstrip() for line in string.split("\n") if
+            len(line) > 0])
